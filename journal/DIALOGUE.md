@@ -20,7 +20,7 @@
 
 **계승한 설계 원칙** (상세: [DESIGN_PRINCIPLES.md](../DESIGN_PRINCIPLES.md))
 - 판단 지원 (Judgment Support)
-- 마찰의 유형학 (Taxonomy of Friction)
+- 마찰과 우선순위 (Friction as Priority)
 - 역할 전환 (Facilitator ↔ Critical Friend)
 - 구조 → 세렌디피티
 
