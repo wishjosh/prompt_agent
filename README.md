@@ -22,6 +22,7 @@
 prompt_agent/
 ├── README.md                    # 이 파일
 ├── DESIGN_PRINCIPLES.md         # 프롬프트 설계 원칙
+├── KNOWLEDGE_SYSTEM.md          # 지식 추출 및 정리 시스템 원칙
 ├── prompts/                     # 프롬프트 보관소
 │   ├── _template.md             # 작성 템플릿
 │   └── research/                # 연구 도메인 프롬프트
