@@ -21,12 +21,13 @@
 ```
 prompt_agent/
 ├── README.md                    # 이 파일
-├── DESIGN_PRINCIPLES.md         # 프롬프트 설계 원칙
-├── KNOWLEDGE_SYSTEM.md          # 지식 추출 및 정리 시스템 원칙
 ├── prompts/                     # 프롬프트 보관소
 │   ├── _template.md             # 작성 템플릿
-│   └── research/                # 연구 도메인 프롬프트
-├── meta/                        # 카탈로그
+│   ├── research/                # 연구 도메인 프롬프트
+│   └── personal/                # 개인/실험용 프롬프트
+├── meta/                        # 시스템 설정 및 카탈로그
+│   ├── DESIGN_PRINCIPLES.md     # 프롬프트 설계 원칙
+│   ├── KNOWLEDGE_SYSTEM.md      # 지식 추출 및 정리 시스템 원칙
 │   └── catalog.md               # 전체 프롬프트 목록
 └── journal/                     # 사고 일지
     └── DIALOGUE.md              # 프롬프트 설계 논의 축적
@@ -34,7 +35,7 @@ prompt_agent/
 
 ## 설계 원칙 (요약)
 
-자세한 내용은 [DESIGN_PRINCIPLES.md](DESIGN_PRINCIPLES.md) 참조.
+자세한 내용은 [DESIGN_PRINCIPLES.md](meta/DESIGN_PRINCIPLES.md) 참조.
 
 1. **판단 지원** — 연구자의 판단을 대신하지 않고, 판단의 비용을 낮춘다
 2. **마찰과 우선순위** — 어떤 마찰을 위임할지의 주도권은 연구자에게 있다
