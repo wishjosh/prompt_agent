@@ -17,6 +17,12 @@
 | RES-003 | [논리적 결합](../prompts/research/logic_fitting.md) | 인용 논리의 정합성 팩트체크 | 체리피킹 및 논리적 비약 검열 | CF | draft | v1.1 |
 | RES-004 | [창조적 스파크](../prompts/research/action_fitting.md) | 파생 아이디어를 연구 씨앗으로 자산화 | 아이디어 구조화 및 Missing Links 경고 | CF | draft | v1.1 |
 
+## 개인 도메인
+
+| ID | 프롬프트명 | 목표 행위 | 위임 범위 | AI 역할 | 상태 | 버전 |
+|----|-----------|----------|----------|--------|------|------|
+| PER-001 | [사주 행동 분석](../prompts/personal/BaZi%20Behavioral%20Analysis.md) | 사주를 행동 분석의 거울로 활용하여 심리적 약점 및 성향 진단 | 행동 패턴 및 심리 분석 (운명 판단 배제) | CF | draft | v1.0 |
+
 ---
 
 ## 범례
