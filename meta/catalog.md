@@ -13,7 +13,8 @@
 | RES-000-B | [모드별 타겟팅 필터](../prompts/research/RES-000-B_mode_specific_filter.md) | 수집된 소스를 특정 모드에 맞게 선별 | 소스 특성 분석 및 노이즈 제거 | F | draft | v1.1 |
 | RES-000-C | [교차 모드 입체 종합](../prompts/research/RES-000-C_multi_dimensional_synthesis.md) | 단일 모드의 사각지대 보완 및 다각적 입체 분석 | 단편적 서사 융합 및 발전적 연구 방향 제안 | 전환 | draft | v1.2 |
 | RES-001 | [다중 소스 스캐닝](../prompts/research/RES-001_multi_source_scanning.md) | 다량 문헌의 지형도 파악 | 1차 분류 및 군집화 (선택은 연구자) | F | draft | v1.3 |
-| RES-002 | [단일 소스 심층 해체](../prompts/research/RES-002_single_source_deep_dive.md) | 단일 문헌의 뼈대와 주변부 분리 추출 | 투명한 구조화 및 누락 방지 요약 | F | draft | v1.1 |
+| RES-002-A | [학술 논문 단일 소스 심층 해체](../prompts/research/RES-002-A_paper_deep_dive.md) | 학술 논문 1편의 IMRaD 뼈대와 주변부 분리 추출 | 투명한 구조화 및 누락 방지 요약 | F | draft | v1.2 |
+| RES-002-G | [영상 단일 소스 심층 해체](../prompts/research/RES-002-G_video_deep_dive.md) | 영상 1편의 구조 재구성 및 휘발 요소(용어·아티팩트·무근거 주장) 분리 보존 | 비명시적 뼈대 재구성, 다중 화자 분리, 글로사리·아티팩트 추출 | F | draft | v1.0 |
 | RES-003 | [논리적 결합](../prompts/research/RES-003_logic_fitting.md) | 인용 논리의 정합성 팩트체크 | 체리피킹 및 논리적 비약 검열 | CF | draft | v1.1 |
 | RES-004 | [창조적 스파크](../prompts/research/RES-004_action_fitting.md) | 파생 아이디어를 연구 씨앗으로 자산화 | 아이디어 구조화 및 Missing Links 경고 | 전환 | draft | v1.1 |
 

@@ -1,5 +1,9 @@
 # 프롬프트 설계 원칙
 
+> **메타 원칙 SSoT (Single Source of Truth)**: 본 문서의 원칙은 `_ai_agent_/` 전체에 적용된다.
+> `research_agent`, `writing_agent` 등 각 에이전트의 자체 강령은 본 원칙의 도메인 전문화 버전이며, 본 문서 외 다른 곳에서 원칙을 재정의하지 않는다.
+> 전체 색인: [`_ai_agent_/INDEX.md`](../../INDEX.md)
+
 > 이 문서는 `research_agent/journal/DIALOGUE.md`에서 축적된 사고를 프롬프트 제작의 실천 가이드로 구조화한 것이다.
 > 원칙의 출처와 맥락이 필요하면 DIALOGUE.md를 참조하라.
 
