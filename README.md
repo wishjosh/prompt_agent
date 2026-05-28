@@ -22,15 +22,21 @@
 prompt_agent/
 ├── README.md                    # 이 파일
 ├── prompts/                     # 프롬프트 보관소
-│   ├── _template.md             # 작성 템플릿
-│   ├── research/                # 연구 도메인 프롬프트
+│   ├── _template_composite.md   # Composite 작성 템플릿 (한 호흡 완결 단위)
+│   ├── _template_atom.md        # Atom 작성 템플릿 (재사용 최소 단위)
+│   ├── _template_adapter.md     # Adapter 작성 템플릿 (환경별 실행본)
+│   ├── _template.md             # (deprecated) 구 단일 템플릿 — 참고용 보존
+│   ├── research/                # 연구 도메인 (환경 중립 코어)
+│   │   └── adapters/            # 환경별 어댑터 (NotebookLM 등)
 │   └── personal/                # 개인/실험용 프롬프트
 ├── meta/                        # 시스템 설정 및 카탈로그
 │   ├── DESIGN_PRINCIPLES.md     # 프롬프트 설계 원칙
 │   ├── KNOWLEDGE_SYSTEM.md      # 지식 추출 및 정리 시스템 원칙
+│   ├── CORE_ADAPTER_ARCHITECTURE.md  # 코어-어댑터 파일 구조 기준
 │   └── catalog.md               # 전체 프롬프트 목록
 └── journal/                     # 사고 일지
-    └── DIALOGUE.md              # 프롬프트 설계 논의 축적
+    ├── DIALOGUE.md              # 프롬프트 설계 논의 축적
+    └── DEVELOPMENT.md           # 개발 일지
 ```
 
 ## 설계 원칙 (요약)
@@ -44,9 +50,15 @@ prompt_agent/
 
 ## 프롬프트 작성 방법
 
-1. `prompts/_template.md`를 복사하여 새 프롬프트 파일 생성
-2. 목표 행위, 위임 범위, AI 역할을 먼저 정의
-3. 절차와 출력 형식을 설계
-4. 대화창에서 테스트 후 반복 개선
-5. `meta/catalog.md`에 등록
-6. 설계 과정의 사고 변화는 `journal/DIALOGUE.md`에 기록
+프롬프트는 환경 중립 **코어**와 환경별 **어댑터**로 나뉜다. 자세한 구조는 [CORE_ADAPTER_ARCHITECTURE.md](meta/CORE_ADAPTER_ARCHITECTURE.md) 참조.
+
+1. 만들 단위에 맞는 템플릿을 복사:
+   - 재사용 최소 단위 → `prompts/_template_atom.md`
+   - 한 호흡 완결 단위 → `prompts/_template_composite.md`
+   - 기존 코어의 환경별 실행본 → `prompts/_template_adapter.md`
+2. **먼저 물어라**: 이 프롬프트가 연구자의 어떤 판단의 비용을 낮추는가? (필수 4섹션: 메타·목표·역할·제약)
+3. 선택 섹션(절차·출력·위임·입력)은 필요한 것만 채우고, 불필요하면 섹션째 삭제한다.
+4. 환경 의존 요소(소스 선택 방식·인용 마커 형식 등)는 코어에 넣지 말고 **어댑터로 분리**한다.
+5. 여러 AI(NotebookLM·Claude·Codex 등)에서 테스트 후 반복 개선한다.
+6. `meta/catalog.md`에 등록한다.
+7. 설계 과정의 사고 변화는 `journal/DIALOGUE.md`에 기록한다.
