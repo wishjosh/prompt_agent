@@ -5,6 +5,26 @@
 
 ---
 
+## [2026-05-29] 전체 폴더 검토 및 코어-어댑터 전환 상태 점검
+
+**검토 범위**
+- `README.md`, `meta/catalog.md`, `meta/CORE_ADAPTER_ARCHITECTURE.md`
+- `prompts/templates/`, `prompts/research/RES/`, `prompts/research/core/`, `prompts/research/adapters/`, `prompts/research/notebooklm/`
+- `build_notebooklm.py` 및 테스트 결과 보관 폴더
+
+**확인 사항**
+- 프롬프트 저장소가 단일 파일 중심에서 **환경 중립 코어 + 환경별 어댑터 + NotebookLM 합본** 구조로 전환 중임.
+- 기존 RES 계열 프롬프트는 `prompts/research/RES/` 하위로 모이고, 영상 해체 계열은 `core/`, `adapters/`, `notebooklm/` 3계층으로 분리되어 있음.
+- `RES-002-G-router`, `RES-002-G`, `RES-002-G-deep`가 카탈로그에 등록되어 있으며, NotebookLM 입력 길이 제약에 대응하기 위해 라우터/심층 해체 파이프라인 분리가 진행됨.
+- `build_notebooklm.ps1`에서 `build_notebooklm.py`로 빌드 스크립트가 전환된 상태로 보임.
+
+**주의 및 후속 정리**
+- 검토 시점의 git 상태는 작업 중 상태임: `meta/catalog.md` 수정, 기존 평면 `prompts/research/RES-*.md` 파일 삭제, `prompts/research/RES/` 및 신규 코어/어댑터/합본 파일 추가가 동시에 존재.
+- `meta/catalog.md`의 일부 기존 RES 링크는 실제 파일 위치(`prompts/research/RES/`)와 불일치할 수 있으므로, 전환 완료 시 링크 정합성 점검 필요.
+- `README.md`의 디렉토리 구조 설명도 실제 `RES/`, `core/`, `adapters/`, `notebooklm/` 구조를 반영하도록 후속 갱신 필요.
+
+---
+
 ## [2026-05-23] 영상 해체 프롬프트 신설 및 단일 심층 해체 세분화 합의
 
 **1. RES-002-G (영상 단일 소스 심층 해체) v1.0 초안 작성**
