@@ -1,5 +1,6 @@
-# Prompt Agent — 프롬프트 개발 일지 (DEVELOPMENT)
+# Prompt Agent — 프롬프트 개발 일지 전체 원문 (2026-05 archive)
 
+> 2026-05 개발 일지의 **전체 원문 보존본**. 현재형 요약은 `../development.md` 참조.
 > 이 파일은 프롬프트의 **실제 개발 및 리팩토링 내역(Technical Changelog)**을 기록합니다.
 > 어떤 프롬프트가 생성되었고, 어떤 제약조건이 추가/변경되었는지 추적합니다.
 

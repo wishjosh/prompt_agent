@@ -36,8 +36,10 @@ prompt_agent/
 │   ├── CORE_ADAPTER_ARCHITECTURE.md  # 코어-어댑터 파일 구조 기준
 │   └── catalog.md               # 전체 프롬프트 목록
 └── journal/                     # 사고 일지
-    ├── DIALOGUE.md              # 프롬프트 설계 논의 축적
-    └── DEVELOPMENT.md           # 개발 일지
+    ├── dialogue.md              # 설계 논의 요약 (현재형)
+    ├── development.md           # 개발 일지 요약 (현재형)
+    ├── resume.md                # 작업 재개용 현재 상태
+    └── archive/                 # 월별 전체 원문 보존 (dialogue_full / development_full)
 ```
 
 ## 설계 원칙 (요약)
@@ -62,4 +64,4 @@ prompt_agent/
 4. 환경 의존 요소(소스 선택 방식·인용 마커 형식 등)는 코어에 넣지 말고 **어댑터로 분리**한다.
 5. 여러 AI(NotebookLM·Claude·Codex 등)에서 테스트 후 반복 개선한다.
 6. `meta/catalog.md`에 등록한다.
-7. 설계 과정의 사고 변화는 `journal/DIALOGUE.md`에 기록한다.
+7. 설계 과정의 사고 변화는 `journal/dialogue.md`에 기록한다(전체 원문은 `journal/archive/`).

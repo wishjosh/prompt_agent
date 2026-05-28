@@ -2,7 +2,7 @@
 
 > **메타 원칙 SSoT**: 본 문서는 `prompt_agent`의 프롬프트 파일 구조 기준이다.
 > 이 아키텍처는 [DESIGN_PRINCIPLES.md](DESIGN_PRINCIPLES.md) 원칙 5(구동 환경 최적화)를 NotebookLM 특화에서 **환경 중립**으로 일반화한 것이며, [KNOWLEDGE_SYSTEM.md](KNOWLEDGE_SYSTEM.md)의 특화 전략(매체별 sub-prompt)과 직교한다.
-> 결정 경위: [journal/DIALOGUE.md](../journal/DIALOGUE.md) [2026-05-28]
+> 결정 경위: [journal/archive/dialogue_full_2026-05.md](../journal/archive/dialogue_full_2026-05.md) [2026-05-28] (요약: [journal/dialogue.md](../journal/dialogue.md))
 
 ---
 

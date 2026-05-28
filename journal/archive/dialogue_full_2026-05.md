@@ -1,5 +1,6 @@
-# Prompt Agent — 설계 대화 일지 (DIALOGUE)
+# Prompt Agent — 설계 대화 일지 전체 원문 (2026-05 archive)
 
+> 2026-05 대화 일지의 **전체 원문 보존본**. 현재형 요약은 `../dialogue.md` 참조.
 > 이 파일은 프롬프트의 기술적 변경이 아닌, **프롬프트 설계 과정에서 사고가 어떻게 발전하는지**를 기록한다.
 > `research_agent/journal/DIALOGUE.md`의 전통을 계승하되, 프롬프트 제작에 초점을 맞춘다.
 

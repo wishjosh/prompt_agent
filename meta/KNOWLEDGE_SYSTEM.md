@@ -13,7 +13,7 @@
 
 아래는 규칙(Rule)이 아니라 **자세(Posture)**다. 어떤 자세를 취할지는 연구자의 현재 우선순위가 결정한다.
 
-> 논의 경위: [journal/DIALOGUE.md](journal/DIALOGUE.md)
+> 논의 경위: [journal/dialogue.md](../journal/dialogue.md) (전체 원문: [archive/dialogue_full_2026-05.md](../journal/archive/dialogue_full_2026-05.md))
 
 ### 완결성 우선, 점진적 고도화 (Completeness First, Iterative Refinement)
 
