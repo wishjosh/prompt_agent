@@ -11,12 +11,14 @@
 - `RES-000-C`를 '간극 분석'에서 '입체적 종합'으로 재설계(투견장 모델 → 3D 퍼즐 모델).
 - 단일 심층 해체를 소스 유형별로 세분화 합의(7종: A논문·B단행본보류·C보고서·D1/D2법령·E기사·G영상), `RES-002`→`RES-002-A` git mv 재명명, 영상 해체 `RES-002-G`를 v1.0(7섹션) → v2.0(멀티모드 deep/brief/recipe + 공통 척추)으로 재설계, 품질 게이트 `RES-000-D` 신설안 폐기.
 - 저장소를 단일 파일 중심에서 **환경 중립 core + 환경별 adapters + NotebookLM 합본** 3계층으로 전환 착수, `RES-002-G` router/deep 분리, `build_notebooklm.ps1`→`build_notebooklm.py`.
+- `RES-002-G-router`를 '모드 판별'에서 **'판별 + 생산자 의도 기준 콘텐츠 개요'**로 확장(v1.2). 1·2단계 중복은 증거 출처(명시 신호 vs 암묵 추론)로 분리. 모드 기준에서 **영상 길이를 축출**하고 밀도·목적 중심으로 재정의(RES-002-G 계열 일괄).
 
 ### 현재 판단
 - 프롬프트는 '맥가이버 칼'이 아니라 '메스'다. **결이 완전히 다르면 분리, 강도·분량만 다르면 모드**로 가른다(RES-000-A 1→3, RES-002 유형 분리, RES-002-G 멀티모드가 같은 원칙의 사례).
 - 모든 프롬프트는 NotebookLM 구동 전제: 인용 마커 + grounded sources, 탐색은 Seed 문서 기반.
 - 자산화 국면(`RES-003`/`RES-004`)에서 AI는 Facilitator가 아니라 Critical Friend — 🚨 Warning / Missing Links로 인지적 마찰을 극대화한다.
 - 소스 품질 평가는 별도 게이트가 아니라 해체의 부산물로 드러낸다.
+- 영상 처리 모드는 **내용의 밀도·목적**으로 가른다 — 길이는 밀도의 약한 상관변수일 뿐 기준이 아니다(짧고 심오한 강연 ≠ brief).
 
 ### 다음 작업
 - 코어-어댑터 전환 마무리: `meta/catalog.md`의 기존 RES 링크를 실제 위치(`prompts/research/RES/`)와 정합화, `README.md` 디렉토리 설명을 `RES/`·`core/`·`adapters/`·`notebooklm/` 구조로 갱신.

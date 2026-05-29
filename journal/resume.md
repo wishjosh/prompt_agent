@@ -3,7 +3,7 @@
 ## 현재 상태
 - 메타 문서: `meta/DESIGN_PRINCIPLES.md`, `meta/KNOWLEDGE_SYSTEM.md`, `meta/CORE_ADAPTER_ARCHITECTURE.md`, 카탈로그 `meta/catalog.md`.
 - 수집(`RES-000-A1/A2/A3`, `B`, `C`) · 해체(`RES-001`, `RES-002-A`) · 자산화(`RES-003`, `RES-004`) 프롬프트 작성 완료.
-- 영상 해체 `RES-002-G` v2.0(멀티모드 deep/brief/recipe + 공통 척추) 완성, router/deep 분리 진행 중 (brief/recipe 미완).
+- 영상 해체 `RES-002-G` v2.0(멀티모드 deep/brief/recipe + 공통 척추) 완성, router/deep 분리. **router v1.2 — 콘텐츠 개요(생산자 의도 기준) 추가 + 모드 기준에서 길이 제거(밀도·목적 중심)**. brief/recipe 어댑터 미완.
 - 저장소를 환경 중립 `core/` + 환경별 `adapters/` + `notebooklm/` 합본 3계층으로 전환 중 (`build_notebooklm.py`).
 
 ## 바로 할 일
