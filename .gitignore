@@ -4,3 +4,6 @@ Thumbs.db
 
 # Test results
 test_results/
+
+# Local IDE/agent settings
+.claude/
