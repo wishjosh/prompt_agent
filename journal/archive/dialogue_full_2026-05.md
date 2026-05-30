@@ -21,7 +21,7 @@
 3. 설계 과정의 **논의 축적**이 프롬프트 자체만큼 중요하다.
 4. 외부 확장은 **내부 완결성 확보 후**에 진행한다.
 
-**계승한 설계 원칙** (상세: [DESIGN_PRINCIPLES.md](../meta/DESIGN_PRINCIPLES.md))
+**계승한 설계 원칙** (상세: [DESIGN_PRINCIPLES.md](../../meta/DESIGN_PRINCIPLES.md))
 - 판단 지원 (Judgment Support)
 - 마찰과 우선순위 (Friction as Priority)
 - 역할 전환 (Facilitator ↔ Critical Friend)

@@ -1,49 +1,61 @@
-# 프롬프트 카탈로그
+# 프롬프트 성능 현황판
 
-> 이 프로젝트에서 관리하는 모든 프롬프트의 목록.
-> 프롬프트를 새로 작성하거나 상태가 변경될 때마다 이 테이블을 업데이트한다.
+> 이 파일은 "프롬프트 목록"이 아니라 성능 관리판이다. 새 프롬프트는 형식 등록보다 먼저 실제 입력으로 테스트한다.
+
+## 상태 정의
+
+- `draft`: 실행 가능한 초안. 아직 실제 결과 근거가 부족함.
+- `trialed`: 실제 입력 1회 이상 실행함.
+- `revised`: 테스트에서 드러난 실패나 한계를 반영해 수정함.
+- `validated`: 서로 다른 입력 3개 이상에서 핵심 기준을 통과함.
+- `stable`: 반복 사용 중인 표준 프롬프트.
+- `legacy`: 분리 전 원본, 참고용 보존본, 또는 교체 예정본.
 
 ## 연구 도메인
 
-| ID | 프롬프트명 | 목표 행위 | 위임 범위 | AI 역할 | 상태 | 버전 |
-|----|-----------|----------|----------|--------|------|------|
-| RES-000-A1 | [사회 인식 탐색 전략](../prompts/research/RES-000-A1_social_perception_exploration.md) | 대중 트렌드 및 편견 발굴 | 대중적 키워드 번역 및 커뮤니티 출처 추천 | F | draft | v1.2 |
-| RES-000-A2 | [학술 이론 탐색 전략](../prompts/research/RES-000-A2_academic_theory_exploration.md) | 학술적 렌즈 및 거장 발굴 | 전문 용어 번역 및 핵심 이론 모형 제안 | F | draft | v1.2 |
-| RES-000-A3 | [정책 현실 탐색 전략](../prompts/research/RES-000-A3_policy_reality_exploration.md) | 관련 법령 및 이해관계자 발굴 | 행정 용어 번역 및 정부/이익단체 출처 추천 | F | draft | v1.2 |
-| RES-000-B | [모드별 타겟팅 필터](../prompts/research/RES-000-B_mode_specific_filter.md) | 수집된 소스를 특정 모드에 맞게 선별 | 소스 특성 분석 및 노이즈 제거 | F | draft | v1.1 |
-| RES-000-C | [교차 모드 입체 종합](../prompts/research/RES-000-C_multi_dimensional_synthesis.md) | 단일 모드의 사각지대 보완 및 다각적 입체 분석 | 단편적 서사 융합 및 발전적 연구 방향 제안 | 전환 | draft | v1.2 |
-| RES-001 | [다중 소스 스캐닝](../prompts/research/RES-001_multi_source_scanning.md) | 다량 문헌의 지형도 파악 | 1차 분류 및 군집화 (선택은 연구자) | F | draft | v1.3 |
-| RES-002-A | [학술 논문 단일 소스 심층 해체](../prompts/research/RES/RES-002-A_paper_deep_dive.md) | 학술 논문 1편의 IMRaD 뼈대와 주변부 분리 추출 | 투명한 구조화 및 누락 방지 요약 | F | draft | v1.2 |
-| RES-002-C-scan | [방대 보고서 1차 스캔](../prompts/research/core/RES-002-C-scan_structure_xray.md) `코어` / [어댑터](../prompts/research/adapters/RES-002-C-scan_structure_xray.notebooklm.md) / [합본](../prompts/research/notebooklm/RES-002-C-scan_structure_xray.notebooklm.md) | 방대 보고서 1편을 훑어 메타 진단 + 구조 X-ray + 심화 대상 후보 산출 — 파이프라인 1단계 | 장르 판별·구조 노출·심화 후보 표시 (선택은 연구자) | F | draft | v1.0 (코어-어댑터) |
-| RES-002-C-deep | [보고서 2차 심층 해체](../prompts/research/core/RES-002-C-deep_fact_dissection.md) `코어` / [어댑터](../prompts/research/adapters/RES-002-C-deep_fact_dissection.notebooklm.md) / [합본](../prompts/research/notebooklm/RES-002-C-deep_fact_dissection.notebooklm.md) | 지정한 장을 Core Fact·Secondary Fragment로 해체 + 공통 척추(시점·글로사리·핵심데이터·무근거주장) 유지 — 파이프라인 2단계 | 핵심 사실 추출, 주변부 박제, 용어·데이터·무근거 주장 분류 | F | draft | v1.0 (코어-어댑터) |
-| RES-002-G-router | [영상 모드 판별기](../prompts/research/core/RES-002-G-router_mode_detector.md) `코어` / [어댑터](../prompts/research/adapters/RES-002-G-router_mode_detector.notebooklm.md) / [합본](../prompts/research/notebooklm/RES-002-G-router_mode_detector.notebooklm.md) | 영상 1편의 처리 모드(deep/brief/recipe) 추천 + 생산자 의도 기준 콘텐츠 개요 — 파이프라인 1단계 | 모드 판별·개요 (추천만, 명시 신호 한정) | F | tested | v1.2 (코어-어댑터) |
-| RES-002-G | [영상 단일 소스 멀티모드 해체](../prompts/research/core/RES-002-G_video_deep_dive.md) `코어` / [어댑터](../prompts/research/adapters/RES-002-G_video_deep_dive.notebooklm.md) / [합본](../prompts/research/notebooklm/RES-002-G_video_deep_dive.notebooklm.md) | 영상 1편을 deep/brief/recipe 모드별로 해체 + 공통 척추(메타·글로사리·아티팩트·무근거주장) 유지 | 모드 추천, 비명시적 뼈대 재구성, 다중 화자 분리, 글로사리·아티팩트 추출 | F | draft | v1.0 (코어-어댑터) |
-| RES-002-G-deep | [영상 단일 소스 심층 해체](../prompts/research/core/RES-002-G-deep_in_depth_dissection.md) `코어` / [어댑터](../prompts/research/adapters/RES-002-G-deep_in_depth_dissection.notebooklm.md) / [합본](../prompts/research/notebooklm/RES-002-G-deep_in_depth_dissection.notebooklm.md) | deep 추천 영상 1편을 심층 해체(뼈대 재구성·화자별 Core 논증·후크 격차) + 공통 척추 유지 — 파이프라인 2단계 | 비명시적 뼈대 재구성, 다중 화자 분리, 글로사리·아티팩트 추출 | F | tested | v1.0 (코어-어댑터) |
-| RES-003 | [논리적 결합](../prompts/research/RES-003_logic_fitting.md) | 인용 논리의 정합성 팩트체크 | 체리피킹 및 논리적 비약 검열 | CF | draft | v1.1 |
-| RES-004 | [창조적 스파크](../prompts/research/RES-004_action_fitting.md) | 파생 아이디어를 연구 씨앗으로 자산화 | 아이디어 구조화 및 Missing Links 경고 | 전환 | draft | v1.1 |
+> **파일명 체계**: `{도메인}_{단계}_{채널}_{세부유형}_{행위}` — 해체(digest) 계열 적용 완료. 수집(collect)·자산화(build) 계열은 추후 전환 예정.
 
-## 개인 도메인
+### 수집 (collect) — 체계 미확정, 기존 ID 유지
 
-| ID | 프롬프트명 | 목표 행위 | 위임 범위 | AI 역할 | 상태 | 버전 |
-|----|-----------|----------|----------|--------|------|------|
-| PER-001 | [사주 행동 분석](../prompts/personal/BaZi%20Behavioral%20Analysis.md) | 사주를 행동 분석의 거울로 활용하여 심리적 약점 및 성향 진단 | 행동 패턴 및 심리 분석 (운명 판단 배제) | CF | draft | v1.0 |
+| ID | 프롬프트명 | 현재 위치 | 상태 | 실행 근거 | 다음 실험 |
+|----|-----------|----------|------|----------|----------|
+| RES-000-A1 | [사회 인식 탐색 전략](../lab/experiments/research/RES/RES-000-A1_social_perception_exploration.md) | lab | draft | 없음 | Seed 문서 2종으로 키워드·커뮤니티 추천 품질 확인 |
+| RES-000-A2 | [학술 이론 탐색 전략](../lab/experiments/research/RES/RES-000-A2_academic_theory_exploration.md) | lab | draft | 없음 | 논문 Seed 2종으로 이론 렌즈·검색어 품질 확인 |
+| RES-000-A3 | [정책 현실 탐색 전략](../lab/experiments/research/RES/RES-000-A3_policy_reality_exploration.md) | lab | draft | 없음 | 법정계획/정책보고서 Seed로 행정 용어 변환 확인 |
+| RES-000-B | [모드별 타겟팅 필터](../lab/experiments/research/RES/RES-000-B_mode_specific_filter.md) | lab | draft | 없음 | 혼합 소스 20개 내외로 모드 부합성 분류 확인 |
+| RES-000-C | [교차 모드 입체 종합](../lab/experiments/research/RES/RES-000-C_multi_dimensional_synthesis.md) | lab | draft | 없음 | 사회·학술·정책 산출물 1세트로 사각지대 보완 확인 |
+
+### 해체 (digest)
+
+| ID | 구 ID | 프롬프트명 | 현재 위치 | 상태 | 실행 근거 | 다음 실험 |
+|----|-------|-----------|----------|------|----------|----------|
+| res_digest_multi_scan | RES-001 | [다중 소스 스캐닝](../lab/experiments/research/RES/res_digest_multi_scan.md) | lab | revised | [277개 소스 실행](../eval/runs/20260518_multi_source_scanning_v1.3_277개소스.md), [군집 A 세분화](../eval/runs/20260518_multi_source_scanning_v1.3_군집A_세분화.md) | 다른 주제의 50~100개 소스로 누락·군집 과대화 재검증 |
+| res_digest_text_paper_deep | RES-002-A | [학술 논문 심층 해체](../lab/experiments/research/RES/res_digest_text_paper_deep.md) | lab | draft | 없음 | IMRaD 논문 1편 + 비정형 논문 1편으로 구조 적합성 확인 |
+| res_digest_text_report_scan | RES-002-C-scan | [보고서 1차 스캔](../packages/notebooklm/research/core/res_digest_text_report_scan.md) / [어댑터](../packages/notebooklm/research/adapters/res_digest_text_report_scan.notebooklm.md) / [빌드](../packages/notebooklm/research/builds/res_digest_text_report_scan.notebooklm.md) | package | revised | [수원시 도시공간의 역사 1차 스캔](../eval/runs/20260529_RES-002-C-scan_v1.1_수원시도시공간의역사.md) | 법정계획서/정책보고서 각각 1개로 장르 차이 검증 |
+| res_digest_text_report_deep | RES-002-C-deep | [보고서 2차 심층 해체](../packages/notebooklm/research/core/res_digest_text_report_deep.md) / [어댑터](../packages/notebooklm/research/adapters/res_digest_text_report_deep.notebooklm.md) / [빌드](../packages/notebooklm/research/builds/res_digest_text_report_deep.notebooklm.md) | package | revised | [수원시 도시공간의 역사 2차 심층 해체](../eval/runs/20260529_RES-002-C-deep_v1.0_수원시도시공간의역사_1부1-2장.md) | 스캔 맥락 임베드 방식으로 재실행 후 품질 비교 |
+| res_digest_video_route | RES-002-G-router | [영상 모드 판별기](../packages/notebooklm/research/core/res_digest_video_route.md) / [어댑터](../packages/notebooklm/research/adapters/res_digest_video_route.notebooklm.md) / [빌드](../packages/notebooklm/research/builds/res_digest_video_route.notebooklm.md) | package | trialed | 영상 실사용 검증 기록은 journal에만 있음 | 짧고 밀도 높은 영상, 반응 영상, 튜토리얼 영상으로 라우팅 정확도 확인 |
+| res_digest_video_deep | RES-002-G-deep | [영상 심층 해체](../packages/notebooklm/research/core/res_digest_video_deep.md) / [어댑터](../packages/notebooklm/research/adapters/res_digest_video_deep.notebooklm.md) / [빌드](../packages/notebooklm/research/builds/res_digest_video_deep.notebooklm.md) | package | trialed | 영상 실사용 검증 기록은 journal에만 있음 | 다중 화자 영상과 짧은 고밀도 강연으로 deep 구조 검증 |
+| res_digest_video_legacy | RES-002-G | [영상 멀티모드 해체 (원본)](../packages/notebooklm/research/core/res_digest_video_legacy.md) | package | legacy | router/deep 분리 전 원본 | brief/recipe 분리 완료 후 유지 여부 결정 |
+
+### 자산화 (build) — 체계 미확정, 기존 ID 유지
+
+| ID | 프롬프트명 | 현재 위치 | 상태 | 실행 근거 | 다음 실험 |
+|----|-----------|----------|------|----------|----------|
+| RES-003 | [논리적 결합](../lab/experiments/research/RES/RES-003_logic_fitting.md) | lab | draft | 없음 | 실제 인용 후보 5개로 체리피킹·논리 비약 포착 확인 |
+| RES-004 | [창조적 스파크](../lab/experiments/research/RES/RES-004_action_fitting.md) | lab | draft | 없음 | 해체 산출물 2개에서 연구 씨앗 전환 품질 확인 |
+
+## 아키텍처 문서
+
+> 실행 가능한 프롬프트가 아닌 설계 원칙 및 구조 문서. 성능 상태(draft/validated 등) 적용 없음.
+
+| 파일 | 위치 | 내용 | 최종 수정 |
+|------|------|------|----------|
+| [소스 수집 파이프라인](SOURCE_INGESTION_PIPELINE.md) | meta | 소스 입력 채널(말/글/영상/경험)의 2층위 처리 아키텍처. Layer 1 인식론적 태그(DIRECT/MEDIATED) + Layer 2 매체 라우팅(TEXTUAL/ACOUSTIC/MULTIMODAL) | 2026-05-30 |
 
 ---
 
-## 범례
+## 개인 도메인
 
-**위임 범위**: 프롬프트가 다룰 수 있는 작업의 성격을 간략히 기술.
-- Mechanical/Cognitive 분류는 참고 어휘로 사용하되, 고정 판정이 아닌 스펙트럼으로 취급한다.
-- 같은 프롬프트라도 연구자의 상황과 우선순위에 따라 위임 여부가 달라진다.
-
-**AI 역할**:
-- `F` — Facilitator (조력자)
-- `CF` — Critical Friend (비판자)
-- `전환` — 국면별 역할 전환
-
-**상태**:
-- `draft` — 초안 작성 완료
-- `tested` — 대화창에서 테스트 완료
-- `production` — 실무 활용 중
-- `deprecated` — 폐기 (사유 기재)
-
+| ID | 프롬프트명 | 현재 위치 | 상태 | 실행 근거 | 다음 실험 |
+|----|-----------|----------|------|----------|----------|
+| PER-001 | [사주 행동 분석](../lab/experiments/personal/prompts/BaZi%20Behavioral%20Analysis.md) | lab | draft | 없음 | 서로 다른 입력 3개로 일반론 회귀 여부 확인 |

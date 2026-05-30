@@ -1,67 +1,57 @@
 # Prompt Agent
 
-> 개별 목표 행위를 잘 수행하는 프롬프트 설계가 최우선이다.
+> 프롬프트의 재사용성보다 먼저, 실제 입력에서 원하는 사고와 출력을 끌어내는 성능을 검증한다.
 
-## 프로젝트 목적
+## 목적
 
-이 프로젝트는 **프롬프트를 제작하고, 그 설계 과정의 논의를 축적**하는 워크스페이스다.
+이 워크스페이스는 데이터, 정보, 지식 소스를 소화하고 체계적으로 정리하기 위한 프롬프트를 실험하고 선별하는 공간이다.
 
-- 하네스 엔지니어링 및 에이전트 시스템 구축이 최종 목표이지만, 여기서는 그 시스템의 세부 요소에 해당하는 **프롬프트**에 집중한다.
-- 프롬프트는 당장 대화창(Claude, Gemini 등), Claude Code, Antigravity 등에서 활용한다.
-- 에이전트 시스템 통합(스킬화 등)은 이 프로젝트 내부에서 완결성이 확보된 이후에 별도로 진행한다.
+- 당장은 Claude, Gemini, NotebookLM, Claude Code, Antigravity 등에서 바로 실행 가능한 프롬프트를 만든다.
+- 장기적으로는 하네스 엔지니어링 기반 에이전트의 자산으로 승격할 수 있는 프롬프트를 축적한다.
+- 단, 에이전트 통합과 모듈화는 검증된 프롬프트에 적용하는 포장 단계다. 초안 단계의 중심은 성능 실험이다.
 
-## 현재 범위
+## 운영 원칙
 
-- **도메인**: 연구 영역 (Research), 개인/실험 영역 (Personal)
-- **활용 환경**: 대화 기반 생성형 AI, Claude Code, Antigravity
-- **외부 연계**: 없음 (내부 완결성 우선)
+1. **Test First**: 새 프롬프트는 먼저 실제 입력에 돌리고, 결과물로 판단한다.
+2. **Prompt Before Module**: Atom, Composite, Core, Adapter는 초안의 출발점이 아니라 검증 후 정리 방식이다.
+3. **Evidence Over Form**: 좋은 프롬프트인지의 근거는 메타데이터가 아니라 실행 결과, 실패 양상, 수정 이력이다.
+4. **Promotion, Not Perfection**: 실험 프롬프트가 여러 입력에서 반복적으로 작동할 때만 `library/`나 `packages/`로 승격한다.
 
-## 디렉토리 구조
+## 디렉터리 구조
 
-```
+```text
 prompt_agent/
-├── README.md                    # 이 파일
-├── prompts/                     # 프롬프트 보관소
-│   ├── templates/               # 작성 템플릿 모음
-│   │   ├── composite.md         # Composite 작성 템플릿 (한 호흡 완결 단위)
-│   │   ├── atom.md              # Atom 작성 템플릿 (재사용 최소 단위)
-│   │   ├── adapter.md           # Adapter 작성 템플릿 (환경별 실행본)
-│   │   └── deprecated.md        # (deprecated) 구 단일 템플릿 — 참고용 보존
-│   ├── research/                # 연구 도메인 (환경 중립 코어)
-│   │   └── adapters/            # 환경별 어댑터 (NotebookLM 등)
-│   └── personal/                # 개인/실험용 프롬프트
-├── meta/                        # 시스템 설정 및 카탈로그
-│   ├── DESIGN_PRINCIPLES.md     # 프롬프트 설계 원칙
-│   ├── KNOWLEDGE_SYSTEM.md      # 지식 추출 및 정리 시스템 원칙
-│   ├── CORE_ADAPTER_ARCHITECTURE.md  # 코어-어댑터 파일 구조 기준
-│   └── catalog.md               # 전체 프롬프트 목록
-└── journal/                     # 사고 일지
-    ├── dialogue.md              # 설계 논의 요약 (현재형)
-    ├── development.md           # 개발 일지 요약 (현재형)
-    ├── resume.md                # 작업 재개용 현재 상태
-    └── archive/                 # 월별 전체 원문 보존 (dialogue_full / development_full)
+├── lab/                         # 프롬프트 실험실
+│   ├── experiments/              # 아직 성능을 검증 중인 프롬프트
+│   └── templates/                # 실험 기록 템플릿 + legacy 작성 템플릿
+├── eval/                        # 성능 평가 계층
+│   ├── scorecard.md              # 좋은 출력의 판단 기준
+│   ├── index.md                  # 테스트 실행 기록 인덱스
+│   └── runs/                     # 실제 실행 결과 보존
+├── library/                     # 검증된 프롬프트의 사용 인덱스
+├── packages/                    # 특정 실행 환경용 포장본
+│   └── notebooklm/research/      # NotebookLM core/adapters/builds
+├── legacy/                      # 전면 개편 전 자산과 경로 대응표
+├── meta/                        # 원칙, 카탈로그, 아키텍처 참고 문서
+└── journal/                     # 설계 논의와 개발 일지
 ```
 
-## 설계 원칙 (요약)
+## 작업 순서
 
-자세한 내용은 [DESIGN_PRINCIPLES.md](meta/DESIGN_PRINCIPLES.md) 참조.
+1. `lab/experiments/`에서 단일 프롬프트를 만든다.
+2. 실제 소스에 실행하고 결과를 `eval/runs/`에 남긴다.
+3. `eval/scorecard.md` 기준으로 성공, 실패, 수정점을 기록한다.
+4. 같은 목적의 다른 입력에서도 반복 테스트한다.
+5. 성능이 확인되면 `library/`에 사용 대상으로 등록한다.
+6. 특정 환경에서 반복 실행이 필요할 때만 `packages/`로 코어/어댑터를 포장한다.
 
-1. **판단 지원** — 연구자의 판단을 대신하지 않고, 판단의 비용을 낮춘다
-2. **마찰과 우선순위** — 어떤 마찰을 위임할지의 주도권은 연구자에게 있다
-3. **역할 전환** — Facilitator(조력자) / Critical Friend(비판자) 모드 구분
-4. **구조 → 세렌디피티** — 명확한 구조가 우연한 발견의 조건을 만든다
+## 승격 기준
 
-## 프롬프트 작성 방법
+- `draft`: 실행 가능한 초안
+- `trialed`: 실제 입력 1회 이상 실행
+- `revised`: 테스트 실패나 한계를 반영해 수정
+- `validated`: 서로 다른 입력 3개 이상에서 핵심 기준 통과
+- `stable`: 반복 사용 중인 표준 프롬프트
+- `legacy`: 분리 전 원본 또는 참고용 보존본
 
-프롬프트는 환경 중립 **코어**와 환경별 **어댑터**로 나뉜다. 자세한 구조는 [CORE_ADAPTER_ARCHITECTURE.md](meta/CORE_ADAPTER_ARCHITECTURE.md) 참조.
-
-1. 만들 단위에 맞는 템플릿을 복사:
-   - 재사용 최소 단위 → `prompts/templates/atom.md`
-   - 한 호흡 완결 단위 → `prompts/templates/composite.md`
-   - 기존 코어의 환경별 실행본 → `prompts/templates/adapter.md`
-2. **먼저 물어라**: 이 프롬프트가 연구자의 어떤 판단의 비용을 낮추는가? (필수 4섹션: 메타·목표·역할·제약)
-3. 선택 섹션(절차·출력·위임·입력)은 필요한 것만 채우고, 불필요하면 섹션째 삭제한다.
-4. 환경 의존 요소(소스 선택 방식·인용 마커 형식 등)는 코어에 넣지 말고 **어댑터로 분리**한다.
-5. 여러 AI(NotebookLM·Claude·Codex 등)에서 테스트 후 반복 개선한다.
-6. `meta/catalog.md`에 등록한다.
-7. 설계 과정의 사고 변화는 `journal/dialogue.md`에 기록한다(전체 원문은 `journal/archive/`).
+현재 성능 현황은 [meta/catalog.md](meta/catalog.md)를 본다. 코어-어댑터 포장 규칙은 [meta/CORE_ADAPTER_ARCHITECTURE.md](meta/CORE_ADAPTER_ARCHITECTURE.md)를 보되, 초안 작성의 기본 절차로 사용하지 않는다. 전면 개편 전 자산은 [legacy/](legacy/)에서 확인한다.
