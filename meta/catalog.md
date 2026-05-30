@@ -46,11 +46,12 @@
 
 ## 아키텍처 문서
 
-> 실행 가능한 프롬프트가 아닌 설계 원칙 및 구조 문서. 성능 상태(draft/validated 등) 적용 없음.
+> 실행 가능한 프롬프트가 아닌 설계 원칙·지침 및 구조 문서. 성능 상태(draft/validated 등) 적용 없음.
 
 | 파일 | 위치 | 내용 | 최종 수정 |
 |------|------|------|----------|
-| [소스 수집 파이프라인](SOURCE_INGESTION_PIPELINE.md) | meta | 소스 입력 채널(말/글/영상/경험)의 2층위 처리 아키텍처. Layer 1 인식론적 태그(DIRECT/MEDIATED) + Layer 2 매체 라우팅(TEXTUAL/ACOUSTIC/MULTIMODAL) | 2026-05-30 |
+| [소스 수집 파이프라인](SOURCE_INGESTION_PIPELINE.md) | meta | 소스 입력 채널(말/글/영상/경험)의 2층위 처리 아키텍처. Layer 1 인식론적 태그(DIRECT/MEDIATED) + Layer 2 매체 라우팅(TEXTUAL/ACOUSTIC/MULTIMODAL). `KNOWLEDGE_SYSTEM` 파생 지침 | 2026-05-31 |
+| [프롬프트 작성 지침](PROMPT_DRAFTING_GUIDE.md) | meta | `DESIGN_PRINCIPLES` 파생 *작성* 지침. 원칙별 작성 규칙(정방향·역방향 링크) + 작성 체크리스트. 포장은 `CORE_ADAPTER` 소관 | 2026-05-31 |
 
 ---
 

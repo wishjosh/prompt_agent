@@ -39,9 +39,18 @@
 - `eval/runs/` 파일명은 과거 실행 기록 보존을 위해 의도적으로 변경하지 않았다.
 - 발견된 사전 불일치: adapters에 코어가 없는 고아 파일(`res_digest_video_route_legacy.notebooklm.md`)이 존재했음. legacy로 처리했다.
 
+### [2026-05-31] 원칙/지침 층위 정립과 프롬프트 작성 지침 신설
+
+- 문서 체계를 **원칙(가고자 하는 방향)**과 **지침(현재 지형에서 그 방향을 유지하는 방법)**의 두 층으로 명시 구분했다. 지형이 바뀌면 지침은 다시 쓰되 방향은 그대로다 — 그래서 라우팅·전처리 같은 운영 규칙은 원칙이 아니라 지침이다.
+- 문서가 **두 트랙**으로 내려옴을 드러냈다. 지식 트랙(`KNOWLEDGE_SYSTEM`→`SOURCE_INGESTION_PIPELINE`)은 소스를 어떻게 다루는가, 프롬프트 트랙(`DESIGN_PRINCIPLES`→`PROMPT_DRAFTING_GUIDE` 작성 / `CORE_ADAPTER_ARCHITECTURE` 포장)은 아티팩트를 어떻게 만드는가를 맡는다. `SOURCE_INGESTION`은 "프롬프트 설계 지침"이 아니라 "소스 처리 지침"임을 분명히 했다.
+- `meta/PROMPT_DRAFTING_GUIDE.md` 신설(골격). 원칙별 작성 규칙 5블록에 **정방향(어느 방향을 유지하나)·역방향(반복 실패 시 어느 원칙을 의심하나) 링크**를 달아, 지침이 원칙을 떠받치는 동시에 원칙 환류 트리거까지 가리키게 했다. 지난 "모든 것은 텍스트다" 최종안에서 드러난 방화벽 오류는 1-3에 "제약은 전역이 아니라 국면×태그 조건부" 규칙으로 박았다.
+- `SOURCE_INGESTION_PIPELINE.md`에 "이 문서의 지위: `KNOWLEDGE_SYSTEM` 파생 지침" 헤더를 달고, 잔존 구 ID(3행 `RES-002 계열`→`해체(digest) 계열`)와 내부 호칭("해석 원칙"→"해석 기준")을 정리했다.
+- 이전 rename에서 누락된 라이브 구 ID도 추가 정리: `library/research/index.md`, 영상 deep 어댑터, `eval/index.md`, route 코어의 "다음 단계" 파이프라인 안내(`RES-002-G-[모드]`→`res_digest_video_[모드]`, 빌드 재생성), `KNOWLEDGE_SYSTEM` 본문. 계보·이력 표기와 `eval/runs/` 파일명, catalog/resume의 구 ID 대조 컬럼은 의도적으로 보존.
+
 ### 다음 작업
 
 - `res_digest_video_route`/`res_digest_video_deep` 영상 테스트를 `eval/runs/`에 정식 기록한다.
-- `RES-002-C` 보고서 파이프라인을 법정계획서와 정책보고서로 재검증한다.
+- 보고서 해체 파이프라인(`res_digest_text_report_scan`/`deep`)을 법정계획서와 정책보고서로 재검증한다.
+- `PROMPT_DRAFTING_GUIDE.md` §1을 `lab/` 실험과 함께 실제 작성 규칙 문구로 채운다.
 - `RES-000` 탐색 프롬프트와 `RES-003/004` 자산화 프롬프트의 실제 입력 테스트를 시작한다.
 - `library/research/index.md`에는 `validated` 이상만 정식 승격시키고, 현재 후보는 후보로만 둔다.
