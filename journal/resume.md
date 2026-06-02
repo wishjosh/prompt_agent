@@ -25,6 +25,17 @@
 - **프롬프트 트랙**: `DESIGN_PRINCIPLES`(원칙) → `PROMPT_DRAFTING_GUIDE`(작성 지침) / `CORE_ADAPTER_ARCHITECTURE`(포장 지침).
 - `PROMPT_DRAFTING_GUIDE`는 골격 상태. 각 규칙에 정방향·역방향 링크. §1을 실제 프롬프트 문구로 채우는 일은 `lab/` 실험과 함께 진행.
 
+### research_agent 연동 규칙 (2026-06-02 정리)
+- `prompt_agent`는 도구 제작·검증 작업실이고, `research_agent`는 검증된 도구를 연구 상황에 맞게 추천하는 관리자다.
+- 상태별 사용 기준을 `meta/catalog.md`에 명시했다: `draft` 실행 금지, `trialed`는 사용자 명시 요청 시에만 제한 사용, `revised`는 후보 추천 가능, `validated` 이상은 기본 도구 등록 가능.
+- `research_agent/meta/PROMPT_TOOL_REGISTRY.md`가 현재 연결판이다. 프롬프트 원본은 `prompt_agent`에만 둔다.
+
+### 프롬프트 엔지니어링 이해 기준 (2026-06-03 정리)
+- 프롬프트 기법은 마법 문구가 아니라 작업 조건부 도구다. zero/few-shot, CoT, self-consistency, ReAct, Tree of Thoughts, RAG, tool use, eval/DSPy류 흐름은 모두 "AI가 더 잘 일하도록 문제와 절차를 설계하는 방법"으로 이해한다.
+- `slow thought`/CoT는 기본값이 아니라 숙고 모드다. 복잡한 추론·비교·비판·계획에는 선택 적용하고, 단순 요약·추출·형식 변환에는 남발하지 않는다.
+- 최신 reasoning 모델에는 "think step by step"보다 목표, 제약, 성공 기준, 출력 형식, 검증 기준을 명확히 주는 것이 우선이다.
+- `prompt_agent`는 최신 트릭 수집소가 아니라 연구 행위별 사고 도구 실험실이다. 좋은 프롬프트의 기준은 연구 판단에 쓸 수 있음, 원자료 근거 보존, 연구자 문제의식 연결, 다음 행동 명료화다.
+
 ---
 
 ## 현재 성능 판단
@@ -53,6 +64,8 @@
 5. 수집(collect)·자산화(build) 계열 파일명 체계 확정.
 6. MULTIMODAL 채널 재합산 방법 설계 (`meta/SOURCE_INGESTION_PIPELINE.md` TBD 항목).
 7. `PROMPT_DRAFTING_GUIDE.md` §1을 lab 실험을 통해 실제 작성 규칙 문구로 채우기.
+8. `research_agent`가 registry를 통해 추천한 도구의 실제 사용 실패·한계를 `eval/runs/` 또는 journal에 환류하는 기록 방식을 정한다.
+9. `PROMPT_DRAFTING_GUIDE.md`에 작업 유형별 사고 모드 기준을 추가한다. 특히 숙고 모드(`slow thought`/CoT류)는 판단 비용이 큰 작업에만 선택 적용하도록 정리한다.
 
 ---
 
@@ -60,7 +73,9 @@
 
 - 합본(`packages/notebooklm/research/builds/`)은 파생물이므로 직접 수정하지 않는다.
 - `eval/runs/` 파일명은 과거 기록 보존용이므로 구 ID가 남아 있어도 변경하지 않는다.
+- `research_agent`가 참조하는 도구 상태를 바꿀 때는 `meta/catalog.md`와 `research_agent/meta/PROMPT_TOOL_REGISTRY.md`를 함께 갱신한다.
 - 품질 게이트(`RES-000-D`류) cross-cutting 필터는 "옥상옥"으로 폐기됨. 재제안하지 않는다.
 - 특화(sub-prompt) → 통합 전환은 AI 능력이 충분히 발전하는 시점까지 보류한다.
 - 작성 지침의 새 규칙은 두 시험을 통과해야 한다(정방향: 어느 방향 유지 / 역방향: 실패 시 어느 원칙 의심). 원칙 수정은 단발이 아닌 eval 누적 추세 + 연구자 결정으로만.
 - Shannon 엔트로피와 의미론적 밀도(정보 밀도) 혼용에 주의. 이 프로젝트에서 반복 발생하는 오류 패턴이다.
+- 프롬프트 기법 이름을 성능 근거로 삼지 않는다. 실제 입력에서 연구 판단 가능성, 근거 보존, 문제의식 연결, 다음 행동 명료화가 확인되어야 상태를 올린다.

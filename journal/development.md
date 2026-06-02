@@ -47,6 +47,21 @@
 - `SOURCE_INGESTION_PIPELINE.md`에 "이 문서의 지위: `KNOWLEDGE_SYSTEM` 파생 지침" 헤더를 달고, 잔존 구 ID(3행 `RES-002 계열`→`해체(digest) 계열`)와 내부 호칭("해석 원칙"→"해석 기준")을 정리했다.
 - 이전 rename에서 누락된 라이브 구 ID도 추가 정리: `library/research/index.md`, 영상 deep 어댑터, `eval/index.md`, route 코어의 "다음 단계" 파이프라인 안내(`RES-002-G-[모드]`→`res_digest_video_[모드]`, 빌드 재생성), `KNOWLEDGE_SYSTEM` 본문. 계보·이력 표기와 `eval/runs/` 파일명, catalog/resume의 구 ID 대조 컬럼은 의도적으로 보존.
 
+### [2026-06-02] research_agent 연동 기준 정리
+
+- `meta/catalog.md`에 상태별 `research_agent` 사용 규칙을 추가했다. `draft`는 실행 금지, `trialed`는 사용자 명시 요청 시 제한 사용, `revised`는 후보 추천 가능, `validated` 이상은 기본 도구 등록 가능으로 정리했다.
+- `library/research/index.md`를 `research_agent`가 참조할 수 있는 후보 도구 인덱스로 명확히 했다. `draft`는 library에 올리지 않고 `lab/`과 catalog에서만 관리한다.
+- `research_agent` 쪽에는 `meta/PROMPT_TOOL_REGISTRY.md`가 신설되었다. 이 문서는 프롬프트 원본을 복사하지 않고 상태·위치·사용 조건만 참조하는 연결판이다.
+
+### [2026-06-03] 프롬프트 엔지니어링 기법 발전 검토
+
+- 프롬프트 엔지니어링은 "명령문 잘 쓰기"에서 출발해 zero-shot/few-shot, Chain-of-Thought, zero-shot CoT, self-consistency, ReAct, Tree of Thoughts, RAG, tool use/function calling, eval 기반 최적화, DSPy류 파이프라인 최적화로 발전해 왔다.
+- 그러나 최신 기법은 주문이 아니라 작업 조건부 도구다. `slow thought`/CoT는 복잡한 추론·비교·계획·비판 검토에서는 효과가 있을 수 있지만, 단순 요약·추출·형식 변환에는 비용과 장황함만 늘릴 수 있다.
+- 최신 reasoning 모델은 내부 추론 능력이 강해졌으므로 "think step by step"을 기본값으로 붙이기보다 목표, 제약, 성공 기준, 출력 형식, 검증 기준을 명확히 주는 쪽이 우선이다.
+- `prompt_agent`의 중심 과제는 최신 프롬프트 트릭 수집이 아니라 연구 행위를 분해하고, 각 행위에 맞는 사고 절차를 프롬프트 도구로 외부화한 뒤 실제 입력으로 검증하는 것이다.
+- 좋은 프롬프트의 기준을 "답이 멋있다"가 아니라 다음 네 가지로 둔다: 연구 판단에 쓸 수 있음, 원자료 근거 보존, 연구자 문제의식과 연결, 다음 행동이 분명함.
+- AI는 스스로 연구 목적을 갖지 않고 사용자의 신호에 반응한다. 따라서 프롬프트 설계는 AI에게 명령하는 기술이 아니라 연구자의 암묵지를 AI가 다룰 수 있는 형태로 구조화하는 작업이다.
+
 ### 다음 작업
 
 - `res_digest_video_route`/`res_digest_video_deep` 영상 테스트를 `eval/runs/`에 정식 기록한다.
@@ -54,3 +69,5 @@
 - `PROMPT_DRAFTING_GUIDE.md` §1을 `lab/` 실험과 함께 실제 작성 규칙 문구로 채운다.
 - `RES-000` 탐색 프롬프트와 `RES-003/004` 자산화 프롬프트의 실제 입력 테스트를 시작한다.
 - `library/research/index.md`에는 `validated` 이상만 정식 승격시키고, 현재 후보는 후보로만 둔다.
+- `research_agent` registry를 통해 추천된 도구의 실사용 실패·한계를 `eval/runs/` 기록으로 환류하는 절차를 정한다.
+- `PROMPT_DRAFTING_GUIDE.md`에 "숙고 모드" 사용 조건을 추가한다. 기본값은 간결한 목표·맥락·출력·검증 기준이고, slow thought/CoT류는 판단 비용이 큰 작업에만 선택 적용한다.
