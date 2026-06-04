@@ -3,6 +3,7 @@
 > **이 문서의 지위**: [KNOWLEDGE_SYSTEM.md](KNOWLEDGE_SYSTEM.md)(방향)에서 파생된 *지침*이다. 즉 "현재의 매체·모델 지형에서, 어떤 소스가 어떤 경로로 처리 파이프라인에 들어오는가"를 정의한다. 지형이 바뀌면 라우팅 방법은 다시 쓰이되 방향은 그대로다 — 그래서 원칙이 아니라 지침이다.
 > **적용 범위**: 해체(digest) 계열 프롬프트의 진입 전 단계.
 > **원칙은 다른 곳에**: 지식 처리 원칙은 [KNOWLEDGE_SYSTEM.md](KNOWLEDGE_SYSTEM.md)에, 프롬프트 설계 원칙은 [DESIGN_PRINCIPLES.md](DESIGN_PRINCIPLES.md)에 있다.
+> **짝 문서**: 이 라우팅이 산출한 입력을 받아 프롬프트를 초안하는 *작성* 단계는 [PROMPT_DRAFTING_GUIDE.md](PROMPT_DRAFTING_GUIDE.md)가 맡는다.
 
 ---
 
